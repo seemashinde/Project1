@@ -1,13 +1,3 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
-library(shiny)
 library(NLP)
 library(tm)
 library(reshape2)
@@ -19,7 +9,7 @@ library(quanteda)
 #source('E:\\RWorkingDirectory\\coursera_wordpred\\getNextWord.R') 
 
 
-#setwd("F:\\R\\capstone\\next_word\\")
+setwd("F:\\R\\capstone\\next_word\\")
 
 load("bigram.RData") 
 load("trigram.RData") 
@@ -158,55 +148,4 @@ getNextWord <- function(phraseIn, wordsOut = 5, flag = TRUE) {
   }
 }
 
-# Define UI for application that draws a histogram
-ui <- fluidPage(
-  
-  # Application title
-  titlePanel("Next word prediction"),
-  
-  # Sidebar with a slider input for number of bins 
-  
-  
-  
-  # Show a plot of the generated distribution
-  mainPanel(
-    textInput("sentence", label = "Enter your text :"),
-    submitButton("Submit", icon("refresh")),
-    helpText("When you click the button above, you will see",
-             "the next predicted words below :"),
-    helpText("Example : I love"),
-    helpText("It shows maximum 5 words, if results not found then it will show as NO RESULT"),
-    #verbatimTextOutput("value", placeholder = FALSE)
-    tableOutput('table'),
-    
-    #hr(),
-    #fluidRow(column(12, tableOutput("table1")))
-    
-    
-    tags$style(type="text/css",
-               ".shiny-output-error { visibility: hidden; }",
-               ".shiny-output-error:before { visibility: hidden; }"
-    )
-    
-  )
-)
-
-# Define server logic required to draw a histogram
-server <- function(input, output) {
-  #  output$value <- reactive({
-  #     output$value <- renderText({ getNextWord(input$sentence) })
-  # }   )
-  
-  abc<- reactive({   getNextWord(input$sentence) })
-  output$table <-renderTable({abc()})  
-  
-  #output$table1 <- renderText[{abc()}]
-  
-  # output$value <- renderPrint({ getNextWord(input$sentence) })
-  # output$value <- renderText("thank u")
-  
-  
-}
-
-# Run the application 
-shinyApp(ui = ui, server = server)
+getNextWord("i am happy")
